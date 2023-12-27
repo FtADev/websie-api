@@ -18,7 +18,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Project> findAll() {
-        return projectRepository.findAllByOrderByPriorityAsc();
+        return projectRepository.findAll();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
             project = result.get();
         }
         else {
-            // we didn't find the employee
+            // we didn't find the project
             throw new RuntimeException("Did not find project id - " + id);
         }
 
@@ -39,8 +39,8 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void save(Project employee) {
-        projectRepository.save(employee);
+    public void save(Project project) {
+        projectRepository.save(project);
     }
 
     @Override

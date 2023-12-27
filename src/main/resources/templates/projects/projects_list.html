@@ -32,10 +32,11 @@
                 <th>Image</th>
                 <th>Detail</th>
                 <th>Language Id</th>
-                <th>Is TeamWork</th>
+                <th>Is Team Work</th>
                 <th>URL</th>
                 <th>Priority</th>
                 <th>Other Detail</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -48,11 +49,10 @@
                 <td th:text="${tempProject.langId}" />
                 <td th:text="${tempProject.isTeamWork}" />
                 <td th:text="${tempProject.url}" />
+                <td th:text="${tempProject.priority}" />
                 <td th:text="${tempProject.otherDetail}" />
-
+                <td/>
                 <td>
-
-
                         <!-- Add "update" button/link -->
                         <a th:href="@{/projects/showFormForUpdate(projectId=${tempProject.id})}"
                            class="btn btn-info btn-sm">

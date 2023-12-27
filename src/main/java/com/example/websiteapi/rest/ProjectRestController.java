@@ -47,7 +47,7 @@ public class ProjectRestController {
 
 
 	@PostMapping("/save")
-	public String saveEmployee(@ModelAttribute("project") Project project) {
+	public String saveProject(@ModelAttribute("project") Project project) {
 
 		projectService.save(project);
 

@@ -11,6 +11,8 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     // In this method, JPA will call "from Project order by priority asc"
     public List<Project> findAllByOrderByPriorityAsc();
 
+    public List<Project> findAll();
+
     // search by name
     public List<Project> findByNameContainsAllIgnoreCase(String name);
 }
