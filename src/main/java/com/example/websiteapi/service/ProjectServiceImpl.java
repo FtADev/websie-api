@@ -54,7 +54,7 @@ public class ProjectServiceImpl implements ProjectService {
         List<Project> results = null;
 
         if (theName != null && (theName.trim().length() > 0)) {
-            results = projectRepository.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(theName, theName);
+            results = projectRepository.findByNameContainsAllIgnoreCase(theName);
         }
         else {
             results = findAll();

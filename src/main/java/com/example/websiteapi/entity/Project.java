@@ -35,18 +35,22 @@ public class Project {
     @Column(name = "url")
     private String url;
 
+    @Column(name = "other_detail")
+    private String otherDetail;
+
     public Project() {}
 
-    public Project(int id, int priority, String title, String name, String image, String detail, int lang_id, int is_team_work, String url) {
+    public Project(int id, int priority, String title, String name, String image, String detail, int langId, int isTeamWork, String url, String otherDetail) {
         this.id = id;
         this.priority = priority;
         this.title = title;
         this.name = name;
         this.image = image;
         this.detail = detail;
-        this.langId = lang_id;
-        this.isTeamWork = is_team_work;
+        this.langId = langId;
+        this.isTeamWork = isTeamWork;
         this.url = url;
+        this.otherDetail = otherDetail;
     }
 
     public int getId() {
@@ -119,5 +123,13 @@ public class Project {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getOtherDetail() {
+        return otherDetail;
+    }
+
+    public void setOtherDetail(String otherDetail) {
+        this.otherDetail = otherDetail;
     }
 }

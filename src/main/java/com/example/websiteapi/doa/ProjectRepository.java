@@ -12,5 +12,5 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     public List<Project> findAllByOrderByPriorityAsc();
 
     // search by name
-    public List<Project> findByFirstNameContainsOrLastNameContainsAllIgnoreCase(String name, String lName);
+    public List<Project> findByNameContainsAllIgnoreCase(String name);
 }
