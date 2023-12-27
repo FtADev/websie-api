@@ -132,4 +132,20 @@ public class Project {
     public void setOtherDetail(String otherDetail) {
         this.otherDetail = otherDetail;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", priority=" + priority +
+                ", title='" + title + '\'' +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", detail='" + detail + '\'' +
+                ", langId=" + langId +
+                ", isTeamWork=" + isTeamWork +
+                ", url='" + url + '\'' +
+                ", otherDetail='" + otherDetail + '\'' +
+                '}';
+    }
 }
