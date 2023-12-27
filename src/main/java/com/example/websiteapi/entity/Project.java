@@ -11,6 +11,9 @@ public class Project {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "priority")
+    private int priority;
+
     @Column(name = "title")
     private String title;
 
@@ -34,8 +37,9 @@ public class Project {
 
     public Project() {}
 
-    public Project(int id, String title, String name, String image, String detail, int lang_id, int is_team_work, String url) {
+    public Project(int id, int priority, String title, String name, String image, String detail, int lang_id, int is_team_work, String url) {
         this.id = id;
+        this.priority = priority;
         this.title = title;
         this.name = name;
         this.image = image;
@@ -51,6 +55,14 @@ public class Project {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public String getTitle() {
