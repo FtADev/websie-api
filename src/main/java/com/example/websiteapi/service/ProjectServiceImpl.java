@@ -22,6 +22,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<Project> findAllByOrderByPriorityAsc() {
+        return projectRepository.findAllByOrderByPriorityAsc();
+    }
+
+
+    @Override
     public Project findById(int id) {
         Optional<Project> result = projectRepository.findById(id);
 

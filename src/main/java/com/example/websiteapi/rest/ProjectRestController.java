@@ -2,80 +2,62 @@ package com.example.websiteapi.rest;
 
 import com.example.websiteapi.entity.Project;
 import com.example.websiteapi.service.ProjectService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@Controller
-@RequestMapping("/projects")
+@RestController
+@RequestMapping("/api")
 public class ProjectRestController {
 
-	private ProjectService projectService;
+    private final ProjectService projectService;
 
-	public ProjectRestController(ProjectService projectService) {
-		this.projectService = projectService;
-	}
+    public ProjectRestController(ProjectService projectService) {
+        this.projectService = projectService;
+    }
 
-	@GetMapping("/list")
-	public String listProjects(Model model) {
-		List<Project> projects = projectService.findAll();
-		model.addAttribute("projects", projects);
-		return "/projects/projects_list";
-	}
+    @GetMapping("/list")
+    public List<Project> listProjects() {
+        List<Project> projects = projectService.findAllByOrderByPriorityAsc();
+        return projects;
+    }
 
-	@GetMapping("/showFormForAdd")
-	public String showAddFormProject(Model model) {
+    @PutMapping("/update")
+    public String updateProject(@RequestBody Project project) {
 
-		Project project = new Project();
-		model.addAttribute("project", project);
+        projectService.save(project);
 
-		return "/projects/add_project";
-	}
-
-	@GetMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("projectId") int id,
-									Model model) {
-
-		Project project = projectService.findById(id);
-		model.addAttribute("project", project);
-
-		return "/projects/add_project";
-	}
+        return "updated";
+    }
 
 
-	@PostMapping("/save")
-	public String saveProject(@ModelAttribute("project") Project project) {
+    @PostMapping("/add")
+    public String addProject(@RequestBody Project project) {
 
-		projectService.save(project);
+        projectService.save(project);
 
-		return "redirect:/projects/list";
-	}
+        return "saved";
+    }
 
 
-	@GetMapping("/delete")
-	public String delete(@RequestParam("projectId") int id) {
+    @DeleteMapping("/delete")
+    public String delete(@RequestParam("projectId") int id) {
 
-		projectService.deleteById(id);
+        projectService.deleteById(id);
 
-		return "redirect:/projects/list";
+        return "Deleted";
 
-	}
+    }
 
-	@GetMapping("/search")
-	public String search(@RequestParam("projectName") String name,
-						 Model theModel) {
+    @GetMapping("/search")
+    public List<Project> search(@RequestParam("projectName") String name) {
 
-		List<Project> projects = projectService.searchBy(name);
+        List<Project> projects = projectService.searchBy(name);
 
-		theModel.addAttribute("projects", projects);
+        return projects;
+    }
 
-		return "/projects/projects_list";
-
-	}
-	
 }
 
 
