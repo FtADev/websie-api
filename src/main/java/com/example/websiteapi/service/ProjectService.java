@@ -7,6 +7,8 @@ import java.util.List;
 public interface ProjectService {
     public List<Project> findAll();
 
+    public List<Project> findAllWithImage();
+
     public List<Project> findAllByOrderByPriorityAsc();
 
     public Project findById(int id);

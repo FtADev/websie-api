@@ -23,6 +23,12 @@ public class ProjectRestController {
         return projects;
     }
 
+    @GetMapping("/list-with-image")
+    public List<Project> listWithImageProjects() {
+        List<Project> projects = projectService.findAllWithImage();
+        return projects;
+    }
+
     @PutMapping("/update")
     public String updateProject(@RequestBody Project project) {
 

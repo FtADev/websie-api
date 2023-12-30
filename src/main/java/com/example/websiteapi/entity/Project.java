@@ -1,6 +1,7 @@
 package com.example.websiteapi.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "project")
@@ -26,8 +27,9 @@ public class Project {
     @Column(name = "detail")
     private String detail;
 
-    @Column(name = "lang_id")
-    private int langId;
+    @ManyToOne
+    @JoinColumn(name="lang_id", nullable=true, referencedColumnName="id_lang")
+    private Language language;
 
     @Column(name = "is_team_work")
     private int isTeamWork;
@@ -38,19 +40,25 @@ public class Project {
     @Column(name = "other_detail")
     private String otherDetail;
 
+    @OneToMany
+    @JoinColumn(name="project_id", nullable=true)
+    private List<Image> imageList;
+
     public Project() {}
 
-    public Project(int id, int priority, String title, String name, String image, String detail, int langId, int isTeamWork, String url, String otherDetail) {
+    public Project(int id, int priority, String title, String name, String image, String detail, int langId, Language language, int isTeamWork, String url, String otherDetail, List<Image> imageList) {
         this.id = id;
         this.priority = priority;
         this.title = title;
         this.name = name;
         this.image = image;
         this.detail = detail;
-        this.langId = langId;
+//        this.langId = langId;
+        this.language = language;
         this.isTeamWork = isTeamWork;
         this.url = url;
         this.otherDetail = otherDetail;
+        this.imageList = imageList;
     }
 
     public int getId() {
@@ -101,12 +109,20 @@ public class Project {
         this.detail = detail;
     }
 
-    public int getLangId() {
-        return langId;
+//    public int getLangId() {
+//        return langId;
+//    }
+//
+//    public void setLangId(int langId) {
+//        this.langId = langId;
+//    }
+
+    public Language getLanguage() {
+        return language;
     }
 
-    public void setLangId(int langId) {
-        this.langId = langId;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     public int getIsTeamWork() {
@@ -133,6 +149,14 @@ public class Project {
         this.otherDetail = otherDetail;
     }
 
+    public List<Image> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
@@ -142,10 +166,11 @@ public class Project {
                 ", name='" + name + '\'' +
                 ", image='" + image + '\'' +
                 ", detail='" + detail + '\'' +
-                ", langId=" + langId +
+                ", language=" + language +
                 ", isTeamWork=" + isTeamWork +
                 ", url='" + url + '\'' +
                 ", otherDetail='" + otherDetail + '\'' +
+                ", imageList=" + imageList +
                 '}';
     }
 }

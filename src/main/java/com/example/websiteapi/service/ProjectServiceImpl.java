@@ -22,6 +22,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<Project> findAllWithImage() {
+        return projectRepository.findAllWithImage();
+    }
+
+    @Override
     public List<Project> findAllByOrderByPriorityAsc() {
         return projectRepository.findAllByOrderByPriorityAsc();
     }
