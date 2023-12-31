@@ -1,6 +1,7 @@
 package com.example.websiteapi.rest;
 
 import com.example.websiteapi.entity.Project;
+import com.example.websiteapi.exception.ProjectNotFoundException;
 import com.example.websiteapi.service.ProjectService;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,10 +51,13 @@ public class ProjectRestController {
     @DeleteMapping("/delete")
     public String delete(@RequestParam("projectId") int id) {
 
-        projectService.deleteById(id);
+        try {
+            projectService.deleteById(id);
+        } catch (Exception exc) {
+            throw new ProjectNotFoundException(exc.getMessage());
+        }
 
         return "Deleted";
-
     }
 
     @GetMapping("/search")
